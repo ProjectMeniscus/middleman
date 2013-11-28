@@ -1,0 +1,5 @@
+requests
+uWSGI
+flask
+pynsive
+python-keystoneclient
