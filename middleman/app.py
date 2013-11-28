@@ -11,7 +11,6 @@ from middleman.util.request import http_request
 import uwsgi
 
 
-
 _CONFIG = load_middleman_config()
 _LOGGING_MANAGER = get_log_manager()
 _LOGGING_MANAGER.configure(_CONFIG)
@@ -78,12 +77,12 @@ def _build_url(url, tenant_id=None):
 @application.route('/<path:remaining_url>', methods=['GET'])
 def on_get(remaining_url):
     try:
-        response = http_request(url=_build_url(remaining_url, None),  http_verb='GET')
+        response = http_request(url=_build_url(remaining_url, None),
+                                http_verb='GET')
         return response.content
     except Exception as ex:
         _LOG.exception(ex)
         return '', 500
-
 
 
 @application.route('/<path:remaining_url>', methods=['POST'])
