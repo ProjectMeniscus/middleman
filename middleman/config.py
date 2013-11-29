@@ -1,5 +1,5 @@
 from middleman.util.config import (load_config, ConfigurationPart,
-                               ConfigurationError)
+                                   ConfigurationError)
 
 
 _DEFAULTS = {
