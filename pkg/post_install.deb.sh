@@ -35,13 +35,13 @@ case "$1" in
 		if [ ! -d /var/log/middleman ]; then
             mkdir /var/log/middleman
             chown -R middleman:adm /var/log/middleman/
-            chmod 0750 /var/log/middleman/
+            chmod 0755 /var/log/middleman/
         fi
 
         if [ ! -d /var/lib/middleman ]; then
             mkdir /var/lib/middleman
             chown middleman:middleman -R /var/lib/middleman/ /etc/middleman
-            chmod -R 0744 /etc/middleman/
+            chmod -R 0755 /etc/middleman/
         fi
     ;;
 
