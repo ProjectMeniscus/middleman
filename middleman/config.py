@@ -1,5 +1,4 @@
-from middleman.util.config import (load_config, ConfigurationPart,
-                                   ConfigurationError)
+from middleman.util.config import (load_config, ConfigurationPart)
 
 
 _DEFAULTS = {
@@ -20,7 +19,8 @@ _DEFAULTS = {
         'ttl': 3600
     },
     'elasticsearch': {
-        'endpoint': 'http://localhost:9200/'
+        'endpoint': 'http://localhost:9200/',
+        'timeout': 15
     }
 }
 
@@ -144,3 +144,10 @@ class ElasticSearchConfiguration(ConfigurationPart):
         Returns the ElasticSearch endpoint to forward Kibana requests
         """
         return self.get('endpoint')
+
+    @property
+    def timeout(self):
+        """
+        Returns the ElasticSearch endpoint to forward Kibana requests
+        """
+        return self.getint('timeout')

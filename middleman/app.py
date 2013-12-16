@@ -76,9 +76,14 @@ def _build_url(url, tenant_id=None):
 
 @application.route('/<path:remaining_url>', methods=['GET'])
 def on_get(remaining_url):
+    #reject GET requests for search until token added to GET in Kibana
+    if "_search" in remaining_url.lower():
+        return 'Unauthorized', 401
+
     try:
         response = http_request(url=_build_url(remaining_url, None),
-                                http_verb='GET')
+                                http_verb='GET',
+                                request_timeout=_CONFIG.elasticsearch.timeout)
         return response.content
     except Exception as ex:
         _LOG.exception(ex)
@@ -98,7 +103,9 @@ def on_post(remaining_url):
 
         if token_is_valid:
             response = http_request(url=_build_url(remaining_url, tenant_id),
-                                    payload=request.data, http_verb='POST')
+                                    payload=request.data, http_verb='POST',
+                                    request_timeout=
+                                    _CONFIG.elasticsearch.timeout)
             return response.content
     except Exception as ex:
         _LOG.exception(ex)
