@@ -1,0 +1,14 @@
+build/
+.coverage
+*.pyc
+.idea
+*.iml
+middleman.egg-info
+.tox
+*.DS_Store*
+nosetests.xml
+middleman/coverage.xml
+cache-store
+cache-config
+*~
+.python-version
