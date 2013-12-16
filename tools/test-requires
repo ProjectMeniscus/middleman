@@ -5,4 +5,3 @@ testtools
 httpretty
 tox
 ordereddict
-six
