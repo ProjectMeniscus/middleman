@@ -104,10 +104,14 @@ def unpack(name, bctx, stage_hooks, filename, dl_target):
     if dl_target.endswith('.tar.gz') or dl_target.endswith('.tgz'):
         archive = tarfile.open(dl_target, mode='r|gz')
         build_location = path.join(
-            bctx.build.root, filename.rstrip('.tar.gz'))
+            bctx.build.root, filename[:-7])
+    elif dl_target.endswith('.tar.bz2'):
+        archive = tarfile.open(dl_target, mode='r|bz2')
+        build_location = path.join(
+            bctx.build.root, filename[:-8])
     elif dl_target.endswith('.zip'):
         archive = zipfile.ZipFile(dl_target, mode='r')
-        build_location = path.join(bctx.build.root, filename.rstrip('.zip'))
+        build_location = path.join(bctx.build.root, filename[:-4])
     else:
         print('Unknown archive format: {}'.format(dl_target))
         raise Exception()
